@@ -12,7 +12,7 @@ from tensorflow.keras.models import load_model
 with open("./column_transformer.pkl", "rb") as file_1:
     column_transformer = pickle.load(file_1)
 
-model_functional = load_model("./functional_model.keras")
+model_functional = load_model("./functional_model.h5")
 
 
 def predict():
