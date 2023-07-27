@@ -1,0 +1,10 @@
+seaborn
+pandas
+matplotlib
+plotly
+Pillow
+scikit-learn==1.2.2
+category_encoders
+xgboost
+streamlit_option_menu
+tensorflow
