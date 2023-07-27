@@ -2,11 +2,9 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.express as px
-from PIL import Image
 
 st.set_page_config(
-    page_title="Laptop Price Regression",
+    page_title="HaiMeds Churn Prediction",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -60,7 +58,7 @@ def distribution():
 def corr_matrix():
     # distribution plot
     st.title("Features Correlation")
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([7, 5])
 
     # correlation for numerical
     fig = plt.figure(figsize=(10, 10))
@@ -76,17 +74,29 @@ def corr_matrix():
         ]
     ].corr(method="spearman")
     sns.heatmap(corr_matrix, annot=True, cmap="mako", square=True)
+    plt.xticks(rotation=45)
+    plt.yticks(rotation=45)
     col1.pyplot(fig)
-    col2.write(
-        "Heatmap disebelah merupakan korelasi antara data numerikal dengan Final Price sebuah laptop, data dibawah merupakan korelasi data kategorical dengan Final Price sebuah laptop"
-    )
-    col2.markdown("### Correlation")
-    col2.markdown("* **Status** : 0.26450718170008297")
-    col2.markdown("* **Brand** : 0.241996453068071")
-    col2.markdown("* **Model** : 0.2519900783873629")
-    col2.markdown("* **CPU** : 0.2517567086906365")
-    col2.markdown("* **GPU** : 0.3422702941182396")
-    col2.markdown("* **Touch** : 0.095355125133349")
+
+    feature_importance_info = """
+        **Feature Importance:**
+
+        - **gender:** 0.0
+        - **region_category:** 0.0223
+        - **membership_category:** 0.7859
+        - **joining_date:** 0.0
+        - **joined_through_referral:** 0.0355
+        - **preferred_offer_types:** 0.0434
+        - **medium_of_operation:** 0.0218
+        - **internet_option:** 0.0025
+        - **last_visit_time:** 0.0604
+        - **used_special_discount:** 0.0092
+        - **offer_application_preference:** 0.0179
+        - **past_complaint:** 0.0072
+        - **complaint_status:** 0.0054
+        - **feedback:** 0.4561
+        """
+    col2.markdown(feature_importance_info)
 
 
 def bar_plot(var, col):

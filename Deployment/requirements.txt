@@ -4,7 +4,6 @@ matplotlib
 plotly
 Pillow
 scikit-learn==1.2.2
-category_encoders
-xgboost
+feature_engine
 streamlit_option_menu
-tensorflow
+tensorflow ==2.13.0
