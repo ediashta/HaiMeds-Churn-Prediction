@@ -1,5 +1,5 @@
 ---
-title: Laptop Price Prediction
+title: HaiMeds Churn Prediction
 emoji: 🌍
 colorFrom: indigo
 colorTo: purple
