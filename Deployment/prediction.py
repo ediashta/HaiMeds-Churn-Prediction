@@ -147,38 +147,38 @@ def predict():
     data_inf = pd.DataFrame(data_inf)
 
     st.dataframe(data_inf)
+    if submitted:
+        data_inf_transform = column_transformer.transform(data_inf)
+        y_pred_inf = model_functional.predict(data_inf_transform)
+        y_pred_inf = np.where(y_pred_inf >= 0.65, 1, 0)
 
-    data_inf_transform = column_transformer.transform(data_inf)
-    y_pred_inf = model_functional.predict(data_inf_transform)
-    y_pred_inf = np.where(y_pred_inf >= 0.65, 1, 0)
-
-    st.write("Prediksi Churn Pelanggan Tersebut adalah :")
-    if y_pred_inf[0] == 1:
-        html_str = f"""
-                    <style>
-                    p.a {{
-                    font: bold 36px Arial;
-                    color: teal;
-                    }}
-                    </style>
-                    <p class="a">Pelanggan Tidak Berpotensi Churn</p>
-                    """
-        st.markdown(html_str, unsafe_allow_html=True)
-        st.write(
-            "Dapat menekankan program loyalty agar pelanggan tetap menggunakan layanan"
-        )
-    else:
-        html_str = f"""
-                    <style>
-                    p.a {{
-                    font: bold 36px Arial;
-                    color: red;
-                    }}
-                    </style>
-                    <p class="a">Pelanggan Berpotensi Churn</p>
-                    """
-        st.markdown(html_str, unsafe_allow_html=True)
-        st.write("Dapat diberikan promosi untuk menarik pelanggan kembali")
+        st.write("Prediksi Churn Pelanggan Tersebut adalah :")
+        if y_pred_inf[0] == 0:
+            html_str = f"""
+                        <style>
+                        p.a {{
+                        font: bold 36px Arial;
+                        color: teal;
+                        }}
+                        </style>
+                        <p class="a">Pelanggan Tidak Berpotensi Churn</p>
+                        """
+            st.markdown(html_str, unsafe_allow_html=True)
+            st.write(
+                "Dapat menekankan program loyalty agar pelanggan tetap menggunakan layanan"
+            )
+        else:
+            html_str = f"""
+                        <style>
+                        p.a {{
+                        font: bold 36px Arial;
+                        color: red;
+                        }}
+                        </style>
+                        <p class="a">Pelanggan Berpotensi Churn</p>
+                        """
+            st.markdown(html_str, unsafe_allow_html=True)
+            st.write("Dapat diberikan promosi untuk menarik pelanggan kembali")
 
 
 if __name__ == "__main__":
